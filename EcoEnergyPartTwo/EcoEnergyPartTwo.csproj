@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Files\" />
+  </ItemGroup>
+
 </Project>
