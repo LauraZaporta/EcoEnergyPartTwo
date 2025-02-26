@@ -16,7 +16,65 @@ html {
   position: relative;
   min-height: 100%;
 }
-
+html, body {
+    height: 100%;
+    margin: 0;
+}
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+body {
+    margin-bottom: 0;
+}
+
+/*HEADER*/
+header {
+    background-image: url("../Resources/Images/banner_image.jpg");
+    background-position: top;
+    height: 150px;
+    width: 100%;
+    border-bottom: solid darkgreen 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 25px;
+}
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 50px;
+}
+header nav a {
+    color: white; 
+    text-decoration: none; 
+    padding-right: 15px;
+}
+header nav a:hover {
+    color: lightgreen;
+}
+
+/*FOOTER*/
+footer {
+    background-image: url("../Resources/Images/banner_image.jpg");
+    background-position: center;
+    height: 100px;
+    width: 100%;
+    border-top: solid darkgreen 5px;
+    margin-top: auto;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+}
+footer p{
+    position: relative;
+    top: 5px;
 }
