@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EcoEnergyPartTwo.Pages
+namespace EcoEnergyPartTwo.Pages.EnergyInd
 {
-    public class SimulationsModel : PageModel
+    public class EnergyModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public SimulationsModel(ILogger<IndexModel> logger)
+        public EnergyModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
