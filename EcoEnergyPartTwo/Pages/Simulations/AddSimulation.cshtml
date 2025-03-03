@@ -1,4 +1,63 @@
 ﻿@page
 @model EcoEnergyPartTwo.Pages.Simulations.AddSimulationModel
 @{
+	ViewData["Title"] = "Afegir simulació";
+}
+
+<h2>Afegir producte</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="SimulationType">Tipus de Simulació</label>
+        <select asp-for="Sim.SimulationType" id="SimulationType" class="form-control" onchange="updateNameSpecificField()">
+            <option value="Solar">Solar</option>
+            <option value="Hidroelèctrica">Hidroelèctrica</option>
+            <option value="Eòlica">Eòlica</option>
+        </select>
+        <span asp-validation-for="Sim.SimulationType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="CampEsp" id="SpecificField">Camp (serà canviat dinàmicament)</label>
+        <input asp-for="Sim.SpecificField" class="form-control" />
+        <span asp-validation-for="Sim.SpecificField" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Rati" id="Rati">Rati (0,3]:</label>
+        <input asp-for="Sim.Rati" class="form-control" />
+        <span asp-validation-for="Sim.Rati" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Cost" id="Cost">Cost del kWh:</label>
+        <input asp-for="Sim.CostkWh" class="form-control" />
+        <span asp-validation-for="Sim.CostkWh" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Price" id="Price">Preu del kWh:</label>
+        <input asp-for="Sim.PricekWh" class="form-control" />
+        <span asp-validation-for="Sim.PricekWh" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+@section Scripts {
+    <script>
+        function updateNameSpecificField() {
+            const tipus = document.getElementById("SimulationType").value;
+            const campLabel = document.getElementById("SpecificField");
+
+            // Actualitzar l'etiqueta en funció del tipus seleccionat
+            if (tipus === "Solar") {
+                campLabel.textContent = "Hores de sol (h):";
+            } else if (tipus === "Hidroelèctrica") {
+                campLabel.textContent = "Cabal d'aigua (m³/s):";
+            } else if (tipus === "Eòlica") {
+                campLabel.textContent = "Velocitat del vent (m/s):";
+            }
+        }
+
+        // Assegurar-se que crida a la funció en carregar la pàgina per a inicialitzar
+        window.onload = updateNameSpecificField;
+    </script>
 }
