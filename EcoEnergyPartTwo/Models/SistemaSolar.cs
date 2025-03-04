@@ -1,27 +1,22 @@
-﻿namespace EcoEnergyPartTwo.Models
+﻿using CsvHelper.Configuration.Attributes;
+
+namespace EcoEnergyPartTwo.Models
 {
     public class SistemaSolar : SistemaEnergia, ICalculEnergia
     {
-        const int NumDecimals = 2;
-        const int MinHours = 1;
+        private double _hoursOfSun;
 
-        private double _horesDeSol;
-        public double HoresDeSol
+        [Name("Hores de sol disponibles / Velocitat del vent / Cabal de l’aigua")]
+        public double HoursOfSun
         {
-            get { return _horesDeSol; }
-            set
-            {
-                if (value < MinHours) { throw new ArgumentOutOfRangeException($"The minimum speed is {MinHours}"); }
-                else { _horesDeSol = value; }
+            get { return _hoursOfSun; }
+            set { if (value >= 1) { _hoursOfSun = value; }
+                else { throw new ArgumentException("Invalid value"); }
             }
-        }
-        public SistemaSolar(double horesDeSol, string simulationType, DateTime simulationDate) : base(simulationType, simulationDate)
-        {
-            HoresDeSol = horesDeSol;
         }
         public override double CalcularEnergia()
         {
-            return Math.Round(HoresDeSol * 1.5, NumDecimals);
+            return Math.Round(HoursOfSun * 1.5, 2);
         }
     }
 }

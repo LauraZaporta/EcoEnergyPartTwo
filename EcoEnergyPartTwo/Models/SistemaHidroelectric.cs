@@ -1,27 +1,22 @@
-﻿namespace EcoEnergyPartTwo.Models
+﻿using CsvHelper.Configuration.Attributes;
+
+namespace EcoEnergyPartTwo.Models
 {
     public class SistemaHidroelectric : SistemaEnergia, ICalculEnergia //Hidroelèctric
     {
-        const int NumDecimals = 2;
-        const int MinFlow = 20;
+        private double _waterFlow;
 
-        private double _cabalAigua;
-        public double CabalAigua
+        [Name("Hores de sol disponibles / Velocitat del vent / Cabal de l’aigua")]
+        public double WaterFlow
         {
-            get { return _cabalAigua; }
-            set
-            {
-                if (value < MinFlow) { throw new ArgumentOutOfRangeException($"The minimum flow is {MinFlow}"); }
-                else { _cabalAigua = value; }
+            get { return _waterFlow; }
+            set { if (value >= 20) { _waterFlow = value; }
+                else { throw new ArgumentException("Invalid value"); }
             }
-        }
-        public SistemaHidroelectric(double cabalAigua, string simulationType, DateTime simulationDate) : base(simulationType, simulationDate)
-        {
-            CabalAigua = cabalAigua;
         }
         public override double CalcularEnergia()
         {
-            return Math.Round(CabalAigua * 9.8 * 0.8, NumDecimals);
+            return Math.Round(WaterFlow * 9.8 * 0.8, 2);
         }
     }
 }
