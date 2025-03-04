@@ -2,48 +2,63 @@ using EcoEnergyPartTwo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EcoEnergyPartTwo.Models.Utilities;
+using CsvHelper;
 using System.Formats.Asn1;
 using System.Globalization;
+using System.IO;
 
 namespace EcoEnergyPartTwo.Pages.Simulations
 {
     public class AddSimulationModel : PageModel
-	{
-		[BindProperty]
+    {
+        [BindProperty]
 		public SimulationForm Sim { get; set; }
 
         public IActionResult OnPost()
         {
+            const string Path = "../EcoEnergyPartTwo/wwwroot/Resources/Files/simulacions_energia.csv";
+            bool isFileEmpty = true;
+            List<object> writeObjects = new List<object>();  // Canvia a la classe base
+
             if (!ModelState.IsValid)
             {
                 return Page();
-            } 
+            }
             else
             {
                 switch (Sim.SimulationType)
                 {
                     case "Solar":
                         SistemaSolar solar = Utilities.AssignSimulationToSolar(Sim);
+                        writeObjects.Add(solar);
                         break;
-                    case "Hidroelèctric":
+                    case "Hidroelèctrica":
                         SistemaHidroelectric hidro = Utilities.AssignSimulationToHidro(Sim);
+                        writeObjects.Add(hidro);
                         break;
                     default:
                         SistemaEolic eolic = Utilities.AssignSimulationToEolic(Sim);
+                        writeObjects.Add(eolic);
                         break;
                 }
-                using (var writer = new StreamWriter(@"C:\ruta\fitxer.csv"))
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                {
-                    csv.WriteRecords(persones);
-                }
-                Console.WriteLine("Fitxer CSV escrit correctament.");
 
+                using (var reader = new StreamReader(Path))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    isFileEmpty = csv.Read();
+                }
+
+                using (var writer = new StreamWriter(Path, append: true))
+                using (var csvWriter = new CsvWriter(writer, new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = !isFileEmpty
+                }))
+                {
+                    csvWriter.WriteRecords(writeObjects); // Escriu les dades
+                }
             }
 
-            //Fotre l'error a l'escriure el form
-
-            return RedirectToPage("Index");
+            return RedirectToPage("/Simulations/Simulations");
         }
     }
 }

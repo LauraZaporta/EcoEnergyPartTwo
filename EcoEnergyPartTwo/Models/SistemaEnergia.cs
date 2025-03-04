@@ -11,7 +11,7 @@
         public double CostTotal { get; set; }
         public double PriceTotal { get; set; }
 		public abstract double CalcularEnergia();
-        public void AssignTotalCost(){ CostTotal = GeneratedEnergy * CostkWh; }
-        public void AssignTotalPrice() { PriceTotal = GeneratedEnergy * PricekWh; }
+        public void AssignTotalCost(){ CostTotal = Math.Round(GeneratedEnergy * CostkWh, 2); }
+        public void AssignTotalPrice() { PriceTotal = Math.Round(GeneratedEnergy * PricekWh, 2); }
     }
 }

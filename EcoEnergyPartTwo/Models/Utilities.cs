@@ -4,6 +4,11 @@ namespace EcoEnergyPartTwo.Models.Utilities
 {
     public class Utilities
     {
+        public static bool CheckNotInRange(double num, double min)
+        {
+            return num < min;
+        }
+
         public static SistemaSolar AssignSimulationToSolar(SimulationForm form)
         {
             SistemaSolar solar = new SistemaSolar

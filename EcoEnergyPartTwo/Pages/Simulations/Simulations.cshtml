@@ -1,10 +1,41 @@
 ﻿@page
-@model IndexModel
+@model EcoEnergyPartTwo.Pages.Simulations.SimulationModel
 @{
     ViewData["Title"] = "Simulations";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Simulacions</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="SimulationList">
+    <h2>Llistat de Simulacions</h2>
+    @if (Model.Simulations.Count == 0)
+    {
+        <p>No hi ha cap simulació emmagatzemada.</p>
+    }
+    <p><strong>Total de simulacions:</strong> @Model.Simulations.Count</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                @if (Model.Simulations.Any())
+                {
+                    // Mostrar les columnes de la primera fila (dinàmicament)
+                    foreach (var header in ((IDictionary<string, object>)Model.Simulations[0]).Keys)
+                    {
+                        <th>@header</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var simulation in Model.Simulations)
+            {
+                <tr>
+                    @foreach (var value in ((IDictionary<string, object>)simulation).Values)
+                    {
+                        <td>@value</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button onclick="window.location.href='/Simulations/AddSimulation'">Afegir Simulació</button>
 </div>
