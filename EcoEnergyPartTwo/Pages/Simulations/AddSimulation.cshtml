@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Afegir simulació";
 }
 
-<div id="SimulationForm">
+<div id="Form">
     <h2>Afegir producte</h2>
     <form method="post" onsubmit="return validateForm()">
         <div class="form-group">
@@ -42,7 +42,7 @@
             <span asp-validation-for="Sim.PricekWh" class="text-danger"></span>
         </div>
 
-        <button type="submit">Enviar</button>
+        <button class="ButtonForm" type="submit">Enviar</button>
     </form>
 </div>
 

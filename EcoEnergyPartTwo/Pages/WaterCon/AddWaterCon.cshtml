@@ -2,3 +2,95 @@
 @model EcoEnergyPartTwo.Pages.WaterCon.AddWaterConModel
 @{
 }
+
+<div id="Form">
+    <h2>Afegir consum d'aigua</h2>
+    <form method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="Any" id="Any">Any:</label>
+            <input asp-for="WC.Year" class="form-control" oninput="validateDynamicYear()"/>
+            <span data-valmsg-for="WC.Year" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CodComarca" id="CodComarca">Codi comarca:</label>
+            <input asp-for="WC.CodeComarca" class="form-control" />
+            <span asp-validation-for="WC.CodeComarca" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Comarca" id="Comarca">Comarca:</label>
+            <input asp-for="WC.Comarca" class="form-control" oninput="validateDynamicComarca()"/>
+            <span data-valmsg-for="WC.Comarca" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Població" id="Població">Població:</label>
+            <input asp-for="WC.Pobl" class="form-control"/>
+            <span asp-validation-for="WC.Pobl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="DomXarxa" id="DomXarxa">Xarxa domèstica:</label>
+            <input asp-for="WC.DomXarxa" class="form-control" />
+            <span asp-validation-for="WC.DomXarxa" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="AltresActivitats" id="AltresActivitats">Activitats econòmiques i fonts pròpies:</label>
+            <input asp-for="WC.AltresActivitats" class="form-control"/>
+            <span asp-validation-for="WC.AltresActivitats" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Total" id="Total">Total:</label>
+            <input asp-for="WC.Total" class="form-control" />
+            <span asp-validation-for="WC.Total" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="ConsumDom" id="ConsumDom">Consum domèstic per càpita:</label>
+            <input asp-for="WC.ConsumDom" class="form-control" />
+            <span asp-validation-for="WC.ConsumDom" class="text-danger"></span>
+        </div>
+        <button class="ButtonForm" type="submit">Enviar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function validateDynamicYear() {
+            const yearInput = document.querySelector('[name="WC.Year"]');
+            const year = parseInt(yearInput.value);
+            const errorSpan = document.querySelector('[data-valmsg-for="WC.Year"]');
+            const currentYear = new Date().getFullYear();
+
+            if (year < 1900 || year > currentYear) {
+                errorSpan.textContent = "El camp any no pot superar l'any actual i no pot haver sigut abans del 1900";
+                yearInput.classList.add("input-validation-error");
+                return false;
+            } else {
+                errorSpan.textContent = "";
+                yearInput.classList.remove("input-validation-error");
+                return true;
+            }
+        }
+        function validateDynamicComarca() {
+            const comarcaInput = document.querySelector('[name="WC.Comarca"]');
+            const comarca = comarcaInput.value;
+            const errorSpan = document.querySelector('[data-valmsg-for="WC.Comarca"]');
+
+            if (comarca != null && (comarca !== comarca.toUpperCase() || /\d/.test(comarca))) {
+                errorSpan.textContent = "La comarca ha d'estar en majúscules i no pot contenir números";
+                comarcaInput.classList.add("input-validation-error");
+                return false;
+            } else {
+                errorSpan.textContent = ""; 
+                comarcaInput.classList.remove("input-validation-error");
+                return true;
+            }
+        }
+        function validateForm() {
+            return validateDynamicYear() && validateDynamicComarca();
+        }
+
+        window.onload = function () {
+            validateDynamicYear();
+            validateDynamicComarca();
+        };
+    </script>
+}
