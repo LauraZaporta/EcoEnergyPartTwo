@@ -1,10 +1,90 @@
 ﻿@page
-@model IndexModel
+@model EcoEnergyPartTwo.Pages.WaterCon.WaterConModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "WaterCon";
 }
 
-<div class="text-center">
-    <h1 class="display-4">BBBBBBBBBBBBBB</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="WaterConList">
+    <h2>Llistat de consums d'aigua</h2>
+    @if (Model.waterConsumptions.Count == 0)
+    {
+        <p>No hi ha cap simulació emmagatzemada.</p>
+    }
+    <p><strong>Total de simulacions:</strong> @Model.waterConsumptions.Count</p>
+    <button onclick="window.location.href='/WaterCon/AddWaterCon'" class="ButtonLeft">Afegir Consum</button>
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (var prop in typeof(EcoEnergyPartTwo.Models.WaterConRecord).GetProperties())
+                {
+                    <th>@prop.Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.waterConsumptions)
+            {
+                <tr>
+                    <td>@item.Year</td>
+                    <td>@item.CodeComarca</td>
+                    <td>@item.Comarca</td>
+                    <td>@item.Pobl</td>
+                    <td>@item.DomXarxa</td>
+                    <td>@item.AltresActivitats</td>
+                    <td>@item.Total</td>
+                    <td>@item.ConsumDom</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="Statistics">
+        <h4>📈 10 municipis amb més consum d'aigua (any més recent)</h4>
+        <table class="table">
+            <thead>
+                <tr><th>Comarca</th><th>Any</th><th>Consum Total</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.topTenMunicipis)
+                {
+                    <tr><td>@item.Comarca</td><td>@item.Year</td><td>@item.Total</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="Statistics">
+        <h4>📊 Consum mitjà d'aigua per comarca</h4>
+        <table class="table">
+            <thead>
+                <tr><th>Comarca</th><th>Consum Mitjà</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.consumPerComarca)
+                {
+                    <tr><td>@item.Comarca</td><td>@item.MitjanaConsum</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="Statistics">
+        <h4>❗ Municipis amb consums sospitosos (+7 dígits)</h4>
+        <ul>
+            @foreach (var comarca in Model.suspiciousConsumptions)
+            {
+                <li>@comarca</li>
+            }
+        </ul>
+    </div>
+
+    <div class="Statistics" id="LastStatistic">
+        <h4>📈 Municipis amb tendència creixent (últims 5 anys)</h4>
+        <ul>
+            @foreach (string municipi in Model.growingMunicipalities)
+            {
+                <li>@municipi</li>
+            }
+        </ul>
+    </div>
 </div>

@@ -110,21 +110,33 @@ img {
 }
 
 /*SIMULATIONS*/
-#SimulationForm {
+#Form {
     padding-top: 50px;
 }
-#SimulationForm div {
+#Form div {
     padding-top: 20px;
 }
 #SimulationList {
     padding-top: 50px;
 }
 
+/*WATER CONSUMPTIONS*/
+#WaterConList {
+    padding-top: 50px;
+}
+.Statistics {
+    padding-top: 50px;
+}
+#LastStatistic {
+    padding-bottom: 50px;
+}
+
 /*BUTTONS*/
-button {
+.ButtonForm {
     display: block;
     margin: auto;
-    margin-top:30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     height: 50px;
     width: 150px;
     border-radius: 4px;
@@ -133,7 +145,24 @@ button {
     color: DarkGreen;
     transition: background-color 0.25s, border 0.05s;
 }
-button:hover {
+.ButtonForm:hover {
+    border: white 4px double;
+    background-color: DarkGreen;
+    color: white;
+    transition: background-color 0.25s, border 0.05s, color 0.05s;
+}
+.ButtonLeft {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    height: 50px;
+    width: 150px;
+    border-radius: 4px;
+    border: DarkGreen 4px double;
+    background-color: white;
+    color: DarkGreen;
+    transition: background-color 0.25s, border 0.05s;
+}
+.ButtonLeft:hover {
     border: white 4px double;
     background-color: DarkGreen;
     color: white;
