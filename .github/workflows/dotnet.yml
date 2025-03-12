@@ -20,8 +20,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies 
-      run: dotnet restore EcoEnergySolutions.sln
+      run: dotnet restore EcoEnergyPartTwo.sln
     - name: Build
-      run: dotnet build EcoEnergySolutions.sln --no-restore
+      run: dotnet build EcoEnergyPartTwo.sln --no-restore
     - name: Test
-      run: dotnet test EcoEnergySolutions.sln --no-build --verbosity normal
+      run: dotnet test EcoEnergyPartTwo.sln --no-build --verbosity normal
