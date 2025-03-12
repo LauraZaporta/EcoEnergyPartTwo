@@ -1,23 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <consums>
-  <consum>
-    <year>Any</year>
-    <codeComarca>Codi comarca</codeComarca>
-    <comarca>Comarca</comarca>
-    <pobl>Població</pobl>
-    <domXarxa>Domèstic xarxa</domXarxa>
-    <altresActivitats>Activitats econòmiques i fonts pròpies</altresActivitats>
-    <total>Total</total>
-    <consumDom>Consum domèstic per càpita</consumDom>
-  </consum>
-  <consum>
-    <year>2025</year>
-    <codeComarca>2</codeComarca>
-    <comarca>BAIX CAMP</comarca>
-    <pobl>3</pobl>
-    <domXarxa>345</domXarxa>
-    <altresActivitats>345</altresActivitats>
-    <total>345</total>
-    <consumDom>345</consumDom>
-  </consum>
+
 </consums>

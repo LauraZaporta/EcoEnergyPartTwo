@@ -1,10 +1,126 @@
 ﻿@page
-@model IndexModel
+@model EcoEnergyPartTwo.Pages.WaterCon.EnergyIndModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "EnergyInd";
 }
 
-<div class="text-center">
-    <h1 class="display-4">CCCCCCCCCCCCC</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="EnergyIndList">
+    <h2>Llistat d'indicadors energètics</h2>
+    @if (Model.energyIndicators.Count == 0)
+    {
+        <p>No hi ha cap simulació emmagatzemada.</p>
+    }
+    <p><strong>Total de simulacions:</strong> @Model.energyIndicators.Count</p>
+    <button onclick="window.location.href='/EnergyInd/AddEnergyInd'" class="ButtonLeft">Afegir Indicador</button>
+    <div class="SlideTable table">
+        <table>
+            <thead>
+                <tr>
+                    @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                    {
+                        <th>@prop.Name</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.energyIndicators)
+                {
+                    <tr>
+                        @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                        {
+                            <td>@(prop.GetValue(record))</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="Statistics">
+        <h4>⬆️ Amb producció neta superior a 3000</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                    {
+                        <th>@prop.Name</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.prodNetaSuperior)
+                {
+                    <tr>
+                        @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                        {
+                            <td>@(prop.GetValue(record))</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="Statistics">
+        <h4>⬆ Amb gasolina superior a 100</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                    {
+                        <th>@prop.Name</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.gasolinaSuperior)
+                {
+                    <tr>
+                        @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                        {
+                            <td>@(prop.GetValue(record))</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="Statistics">
+        <h4>📊 Mitjana de producció neta per any</h4>
+        <ul>
+            @foreach (var any in Model.mitjanaProdNetaPerAny)
+            {
+                <li>@any</li>
+            }
+        </ul>
+    </div>
+    <div class="Statistics">
+        <h4>⬆⬇️ Amb demanda elèctrica superior a 4000 i producció disponible inferior a 300</h4>
+    @if (Model.demElecProdDispSuperior.Count > 0)
+    {
+            <table class="table">
+                <thead>
+                    <tr>
+                        @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                        {
+                            <th>@prop.Name</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var record in Model.demElecProdDispSuperior)
+                    {
+                        <tr>
+                            @foreach (var prop in typeof(EcoEnergyPartTwo.Models.EnergyIndRecord).GetProperties())
+                            {
+                                <td>@(prop.GetValue(record))</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+    else
+    {
+        <p>No hi ha cap registre que compleixi aquestes condicions.</p>
+    }
+    </div>
 </div>

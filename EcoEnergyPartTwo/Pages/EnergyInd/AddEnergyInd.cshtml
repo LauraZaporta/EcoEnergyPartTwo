@@ -1,4 +1,40 @@
 ﻿@page
-@model EcoEnergyPartTwo.Pages.EnergyInd.AddEnergyIndModel
+@model EcoEnergyPartTwo.Pages.WaterCon.AddEnergyIndModel
 @{
+}
+
+<div id="Form">
+    <h2>Afegir indicador energètic</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="Data" id="Data">Data (format mm/yyyy):</label>
+            <input asp-for="EI.Data" class="form-control" />
+            <span asp-validation-for="EI.Data" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CDEEBC_ProdNeta" id="CDEEBC_ProdNeta">Producció neta:</label>
+            <input asp-for="EI.CDEEBCProdNeta" class="form-control" />
+            <span asp-validation-for="EI.CDEEBCProdNeta" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CCAC_GasolinaAuto" id="CCAC_GasolinaAuto">Gasolina auto:</label>
+            <input asp-for="EI.CCACGasolinaAuto" class="form-control" />
+            <span data-valmsg-for="EI.CCACGasolinaAuto" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CDEEBC_DemandaElectr" id="CDEEBC_DemandaElectr">Demanda elèctrica:</label>
+            <input asp-for="EI.CDEEBCDemandaElectr" class="form-control" />
+            <span asp-validation-for="EI.CDEEBCDemandaElectr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CDEEBC_ProdDisp" id="CDEEBC_ProdDisp">Producció disp:</label>
+            <input asp-for="EI.CDEEBCProdDisp" class="form-control" />
+            <span asp-validation-for="EI.CDEEBCProdDisp" class="text-danger"></span>
+        </div>
+        <button class="ButtonForm" type="submit">Enviar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
