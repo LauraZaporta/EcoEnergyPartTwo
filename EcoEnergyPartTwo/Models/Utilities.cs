@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace EcoEnergyPartTwo.Models.Utilities
 {
@@ -105,6 +106,17 @@ namespace EcoEnergyPartTwo.Models.Utilities
                 }
             }
             return growingMunicipalities;
+        }
+        public static bool IsValidDate(string data)
+        {
+            int anyActual = DateTime.Now.Year;
+
+            if (Regex.IsMatch(data, @"^(0[1-9]|1[0-2])\/\d{4}$"))
+            {
+                int any = int.Parse(data.Substring(3, 4));
+                return any <= anyActual;
+            }
+            return false;
         }
     }
 }
