@@ -14,9 +14,15 @@ namespace EcoEnergyPartTwo.Models
                 else { throw new ArgumentException("Invalid value"); }
             }
         }
+
+        /// <summary>
+        /// Calcula l'energia generada per un SistemaSolar.
+        /// </summary>
+        /// <param>Sense paràmetres.</param>
+        /// <returns>Retorna un double amb la quantitat d'energia generada.</returns>
         public override double CalcularEnergia()
         {
-            return Math.Round(HoursOfSun * 1.5, 2);
+            return Math.Round(HoursOfSun * Rati, 2);
         }
     }
 }

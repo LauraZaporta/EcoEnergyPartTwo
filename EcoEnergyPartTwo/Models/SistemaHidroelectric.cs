@@ -14,9 +14,15 @@ namespace EcoEnergyPartTwo.Models
                 else { throw new ArgumentException("Invalid value"); }
             }
         }
+
+        /// <summary>
+        /// Calcula l'energia generada per un SistemaHidroelectric.
+        /// </summary>
+        /// <param>Sense paràmetres.</param>
+        /// <returns>Retorna un double amb la quantitat d'energia generada.</returns>
         public override double CalcularEnergia()
         {
-            return Math.Round(WaterFlow * 9.8 * 0.8, 2);
+            return Math.Round(WaterFlow * 9.8 * Rati, 2);
         }
     }
 }

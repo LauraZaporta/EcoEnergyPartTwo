@@ -13,9 +13,15 @@ namespace EcoEnergyPartTwo.Models
                 else { throw new ArgumentException("Invalid value"); }
             } 
         }
+
+        /// <summary>
+        /// Calcula l'energia generada per un SistemaEolic.
+        /// </summary>
+        /// <param>Sense paràmetres.</param>
+        /// <returns>Retorna un double amb la quantitat d'energia generada.</returns>
         public override double CalcularEnergia()
         {
-            return Math.Round(Math.Pow(WindSpeed, 3) * 0.2, 2);
+            return Math.Round(Math.Pow(WindSpeed, 3) * Rati, 2);
         }
     }
 }
