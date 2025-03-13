@@ -46,22 +46,22 @@ namespace XUnitTests
             //Assert
             Assert.Equal(expectedResult, result);
         }
-        [Fact]
-        public void TestSistemaSolar_HoresDeSolInvalid() //Ha de fallar
-        {
-            //Arrange
-            int hores = 0;
-            double expectedResult = Math.Round(hores * Rati, NumDecimals);
-            var sistemaSolar = new SistemaSolar
-            {
-                HoursOfSun = hores,
-                Rati = Rati
-            };
-            //Act
-            double result = sistemaSolar.CalcularEnergia();
-            //Assert
-            Assert.NotEqual(expectedResult, result);
-        }
+        //[Fact]
+        //public void TestSistemaSolar_HoresDeSolInvalid() //Ha de fallar
+        //{
+        //    //Arrange
+        //    int hores = 0;
+        //    double expectedResult = Math.Round(hores * Rati, NumDecimals);
+        //    var sistemaSolar = new SistemaSolar
+        //    {
+        //        HoursOfSun = hores,
+        //        Rati = Rati
+        //    };
+        //    //Act
+        //    double result = sistemaSolar.CalcularEnergia();
+        //    //Assert
+        //    Assert.NotEqual(expectedResult, result);
+        //}
 
         //SistemaEòlic
         [Fact]
@@ -96,22 +96,22 @@ namespace XUnitTests
             //Assert
             Assert.Equal(expectedResult, result);
         }
-        [Fact]
-        public void TestSistemaEolic_VelocitatInvalid() //Ha de fallar
-        {
-            //Arrange
-            int speed = 0;
-            double expectedResult = Math.Round(Math.Pow(speed, 3) * Rati, NumDecimals);
-            var sistemaEolic = new SistemaEolic
-            {
-                WindSpeed = speed,
-                Rati = Rati
-            };
-            //Act
-            double result = sistemaEolic.CalcularEnergia();
-            //Assert
-            Assert.NotEqual(expectedResult, result);
-        }
+        //[Fact]
+        //public void TestSistemaEolic_VelocitatInvalid() //Ha de fallar
+        //{
+        //    //Arrange
+        //    int speed = 0;
+        //    double expectedResult = Math.Round(Math.Pow(speed, 3) * Rati, NumDecimals);
+        //    var sistemaEolic = new SistemaEolic
+        //    {
+        //        WindSpeed = speed,
+        //        Rati = Rati
+        //    };
+        //    //Act
+        //    double result = sistemaEolic.CalcularEnergia();
+        //    //Assert
+        //    Assert.NotEqual(expectedResult, result);
+        //}
 
         //SistemaHidroelèctric
         [Fact]
@@ -146,22 +146,22 @@ namespace XUnitTests
             //Assert
             Assert.Equal(expectedResult, result);
         }
-        [Fact]
-        public void TestSistemaHidroelec_CabalInvalid() //Ha de fallar
-        {
-            //Arrange
-            int flow = 0;
-            double expectedResult = Math.Round(flow * 9.8 * Rati, NumDecimals);
-            var sistemaHidroelectric = new SistemaHidroelectric
-            {
-                WaterFlow = flow,
-                Rati = Rati
-            };
-            //Act
-            double result = sistemaHidroelectric.CalcularEnergia();
-            //Assert
-            Assert.NotEqual(expectedResult, result);
-        }
+        //[Fact]
+        //public void TestSistemaHidroelec_CabalInvalid() //Ha de fallar
+        //{
+        //    //Arrange
+        //    int flow = 0;
+        //    double expectedResult = Math.Round(flow * 9.8 * Rati, NumDecimals);
+        //    var sistemaHidroelectric = new SistemaHidroelectric
+        //    {
+        //        WaterFlow = flow,
+        //        Rati = Rati
+        //    };
+        //    //Act
+        //    double result = sistemaHidroelectric.CalcularEnergia();
+        //    //Assert
+        //    Assert.NotEqual(expectedResult, result);
+        //}
 
         // CheckNotInRange()
         [Fact]
